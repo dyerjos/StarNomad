@@ -8,6 +8,7 @@ var Missile = load("res://Enemies/Missile.tscn")
 
 var can_shoot = true
 var gameManager = GameManager
+var turn = randi() % 2
 
 onready var label = $Label
 onready var missile_launcher_1 = $MissileLauncher1
@@ -16,9 +17,9 @@ onready var target = $Target
 
 func _ready():
 	gameManager.connect("hit_target", self, "hit_check")
+	gameManager.connect("no_health", self, "queue_free")
 	assign_name()
-	missile_launcher_1.look_at(target.global_position)
-	missile_launcher_2.look_at(target.global_position)
+	scale = Vector2( 0.1, 0.1 )
 
 func hit_check(text):
 	print('received signal to delete ', text)
@@ -35,18 +36,24 @@ func assign_name():
 
 func launch_missiles():
 	if can_shoot:
-		var a = Missile.instance()
-		var b = Missile.instance()
-		get_parent().add_child(a)
-		get_parent().add_child(b)
-		a.start(missile_launcher_1.global_transform, target)
-		b.start(missile_launcher_2.global_transform, target)
-		can_shoot = false
-		yield(get_tree().create_timer(cooldown), "timeout")
-		can_shoot = true
+		if turn == 0:
+			var a = Missile.instance()
+			get_parent().add_child(a)
+			a.start(missile_launcher_1.global_transform, target)
+			reload(1)
+		elif turn == 1:
+			var b = Missile.instance()
+			get_parent().add_child(b)
+			b.start(missile_launcher_2.global_transform, target)
+			reload(0)
 			
 func _process(delta):
-	missile_launcher_1.look_at(target.global_position)
-	missile_launcher_2.look_at(target.global_position)
 	launch_missiles()
+	if scale < Vector2( 1, 1 ):
+		scale +=  Vector2( 0.001, 0.001 )
 		
+func reload( missile):
+	can_shoot = false
+	turn = missile
+	yield(get_tree().create_timer(cooldown), "timeout")
+	can_shoot = true

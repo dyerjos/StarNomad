@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ShieldHit.ogg-07c20180576871058e2d45969c8cfffb.oggstr"
+
+[deps]
+
+source_file="res://Music and Sound/ShieldHit.ogg"
+dest_files=[ "res://.import/ShieldHit.ogg-07c20180576871058e2d45969c8cfffb.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

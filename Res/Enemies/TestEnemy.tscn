@@ -40,4 +40,4 @@ position = Vector2( -10, 10 )
 position = Vector2( 10, 10 )
 
 [node name="Target" type="Position2D" parent="."]
-position = Vector2( 110, 110 )
+position = Vector2( 112, 150 )

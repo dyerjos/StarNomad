@@ -8,11 +8,12 @@ radius = 1.63712
 height = 3.54323
 
 [node name="Missile" type="Area2D"]
+scale = Vector2( 0.25, 0.25 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-speed = 20
+speed = 15
 steer_force = 1.0
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -25,4 +26,7 @@ rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="Lifetime" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+[connection signal="body_entered" from="." to="." method="_on_Missile_body_entered"]
 [connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]
