@@ -1,3 +1,9 @@
 extends YSort
 
-## I handle spawning of each levels encounters like ships and planets!
+var enemyShip = load("res://Enemies/EnemyShip.tscn")
+
+func _ready():
+	GameManager.connect("sector_1", self, "spawn_sector_1")
+
+func spawn_sector_1():
+	pass

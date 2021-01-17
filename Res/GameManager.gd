@@ -4,20 +4,28 @@ signal hit_target(text)
 signal no_health
 signal health_changed(value)
 signal max_health_changed(value)
+signal shields_activating
+signal shields_online
 
 
 export var total_names = 5
 export(int) var max_health = 5 setget set_max_health
 
+
+var shield_activating = false setget activate_shields
+var shield_on = false setget shieldOn
 var ship_health = max_health setget set_health
 var res = preload("res://nameGenerator.tres")
 var target =  null setget set_target
 var name_hopper = [] # add setget gen_more_names if running out is concern
+var sector = 0 setget load_sector
+var can_jump = false
 
 func _ready():
 	randomize()
 	self.ship_health = max_health
 	name_generator()
+
 	
 func set_target(text):
 	target = text
@@ -54,3 +62,17 @@ func set_health(value):
 	if ship_health <= 0:
 		emit_signal("no_health")
 		# end game (que fre everything?)
+
+func activate_shields(value):
+	shield_activating = value
+	print('gameManager is now activating shields')
+	emit_signal("shields_activating")
+	
+func shieldOn(value):
+	shield_on = value
+	emit_signal('shields_online')
+	
+func load_sector(value):
+	print('loading sector ', value)
+	can_jump = false
+	emit_signal('sector_1')

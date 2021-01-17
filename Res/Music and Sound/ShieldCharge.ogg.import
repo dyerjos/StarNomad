@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ShieldCharge.ogg-367b4f126aff8069632e57c689a3d257.oggstr"
+
+[deps]
+
+source_file="res://Music and Sound/ShieldCharge.ogg"
+dest_files=[ "res://.import/ShieldCharge.ogg-367b4f126aff8069632e57c689a3d257.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
