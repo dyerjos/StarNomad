@@ -9,23 +9,21 @@ extra_spacing_bottom = -6
 font_data = ExtResource( 3 )
 
 [node name="EnemyShip" type="Node2D"]
-position = Vector2( 111.026, 44.1076 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 cooldown = 2.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = -22.1767
-margin_top = -17.2328
-margin_right = 36.8233
-margin_bottom = 6.76723
+margin_left = -20.7461
+margin_top = 9.43594
+margin_right = 38.2539
+margin_bottom = 33.436
 rect_scale = Vector2( 0.75, 0.75 )
 custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "Placeholder Placeholder"
 align = 1
 autowrap = true
@@ -38,6 +36,3 @@ position = Vector2( -10, 10 )
 
 [node name="MissileLauncher2" type="Position2D" parent="."]
 position = Vector2( 10, 10 )
-
-[node name="Target" type="Position2D" parent="."]
-position = Vector2( 112, 150 )

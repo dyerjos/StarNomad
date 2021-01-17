@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://UI/wallpaper.png" type="Texture" id=1]
+[ext_resource path="res://UI/Screen Shot 2021-01-17 at 1.10.26 PM.png" type="Texture" id=2]
+[ext_resource path="res://Levels/GodotWild.gd" type="Script" id=3]
+
+[node name="GodotWild" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 212.607, 11.4047 )
+rotation = 0.534194
+scale = Vector2( 0.0105994, 0.0105994 )
+texture = ExtResource( 2 )
+region_rect = Rect2( 100, 100, 0, 0 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 13.5404, 12.2063 )
+rotation = -0.469895
+scale = Vector2( 0.00872094, 0.00872094 )
+texture = ExtResource( 1 )

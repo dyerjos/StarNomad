@@ -6,24 +6,27 @@ export var cooldown = 0.5
 
 var Missile = load("res://Enemies/Missile.tscn")
 
-var can_shoot = true
+var can_shoot = false
 var gameManager = GameManager
 var turn = randi() % 2
 
 onready var label = $Label
 onready var missile_launcher_1 = $MissileLauncher1
 onready var missile_launcher_2 = $MissileLauncher2
-onready var target = $Target
+#onready var playerHull = get_node("/root/Main/PlayerShip/Hull")
 
 func _ready():
 	gameManager.connect("hit_target", self, "hit_check")
 	gameManager.connect("no_health", self, "queue_free")
 	assign_name()
 	scale = Vector2( 0.1, 0.1 )
+	yield(get_tree().create_timer(4.0), "timeout")
+	can_shoot = true
 
 func hit_check(text):
 	print('received signal to delete ', text)
-	if text == label.text:
+	if text.capitalize() == label.text:
+		GameManager.target_destroyed += 1
 		queue_free()
 
 func assign_name():
@@ -39,12 +42,12 @@ func launch_missiles():
 		if turn == 0:
 			var a = Missile.instance()
 			get_parent().add_child(a)
-			a.start(missile_launcher_1.global_transform, target)
+			a.start(missile_launcher_1.global_transform)
 			reload(1)
 		elif turn == 1:
 			var b = Missile.instance()
 			get_parent().add_child(b)
-			b.start(missile_launcher_2.global_transform, target)
+			b.start(missile_launcher_2.global_transform)
 			reload(0)
 			
 func _process(delta):

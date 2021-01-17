@@ -13,8 +13,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-speed = 15
-steer_force = 1.0
+damage = 1
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 1.5708

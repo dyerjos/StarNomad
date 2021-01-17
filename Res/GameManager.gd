@@ -6,12 +6,24 @@ signal health_changed(value)
 signal max_health_changed(value)
 signal shields_activating
 signal shields_online
+signal sector_1
+signal sector_2
+signal sector_3
+signal sector_4
+signal sector_5
+signal sector_6
+signal sector_7
+signal sector_8
+signal sector_9
+signal sector_10
+signal enemy_destroyed
+signal next_sector
 
+export var total_names = 50
+export(int) var max_health = 100 setget set_max_health
 
-export var total_names = 5
-export(int) var max_health = 5 setget set_max_health
-
-
+var target_destroyed = 0 setget combat_check
+var enemy_count = 6 setget last_enemy
 var shield_activating = false setget activate_shields
 var shield_on = false setget shieldOn
 var ship_health = max_health setget set_health
@@ -26,7 +38,16 @@ func _ready():
 	self.ship_health = max_health
 	name_generator()
 
-	
+func last_enemy(value):
+	enemy_count = value
+	if enemy_count == 0:
+		emit_signal("next_sector")
+
+func combat_check(value):
+	target_destroyed = value
+	print('destroyed ', target_destroyed)
+	emit_signal("enemy_destroyed")
+
 func set_target(text):
 	target = text
 	emit_signal("hit_target", text)
@@ -57,7 +78,6 @@ func set_max_health(value):
 
 func set_health(value):
 	ship_health = value
-	print(ship_health)
 	emit_signal("health_changed", ship_health)
 	if ship_health <= 0:
 		emit_signal("no_health")
@@ -73,6 +93,6 @@ func shieldOn(value):
 	emit_signal('shields_online')
 	
 func load_sector(value):
-	print('loading sector ', value)
+	sector = value
 	can_jump = false
-	emit_signal('sector_1')
+	emit_signal('sector_' + str(sector))
