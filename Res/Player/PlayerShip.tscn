@@ -23,12 +23,6 @@ position = Vector2( 110.847, 133.438 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
-[node name="Control Panel" type="Control" parent="." instance=ExtResource( 3 )]
-margin_left = -0.332588
-margin_top = 0.332581
-margin_right = 223.667
-margin_bottom = 128.333
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+[node name="Control Panel" parent="." instance=ExtResource( 3 )]
+
+[editable path="Control Panel"]
